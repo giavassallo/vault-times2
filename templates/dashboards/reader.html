@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Reader Hub | Vault Times{% endblock %}
+
+{% block content %}
+<h2 class="glow">Reader Hub</h2>
+
+<div class="grid">
+  <div class="card-vault">
+    <h3>Subscribed Articles</h3>
+    {% for article in subscribed_articles %}
+      <p><a href="{% url 'article-detail' article.pk %}">{{ article.title }}</a></p>
+    {% empty %}
+      <p class="muted">No subscribed content yet.</p>
+    {% endfor %}
+  </div>
+
+  <div class="card-vault">
+    <h3>Newsletters</h3>
+    {% for newsletter in newsletters %}
+      <p><a href="{% url 'newsletter-detail' newsletter.pk %}">{{ newsletter.title }}</a></p>
+    {% empty %}
+      <p class="muted">No newsletters yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

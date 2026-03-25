@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Editor Hub | Vault Times{% endblock %}
+
+{% block content %}
+<h2 class="glow">Editor Hub</h2>
+
+<div class="grid">
+  {% for article in queue %}
+    <div class="card-vault">
+      <h3>{{ article.title }}</h3>
+      <p class="muted">By {{ article.author.username }}</p>
+
+      <div style="display:flex; gap:.5rem;">
+        <a class="btn-vault" href="{% url 'article-detail' article.pk %}">Review</a>
+
+        <form method="post" action="{% url 'approve-article' article.pk %}">
+          {% csrf_token %}
+          <button class="btn-vault" type="submit">Approve</button>
+        </form>
+      </div>
+    </div>
+  {% empty %}
+    <p class="muted">Nothing waiting for approval.</p>
+  {% endfor %}
+</div>
+{% endblock %}

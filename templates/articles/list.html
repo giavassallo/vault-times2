@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Articles | Vault Times{% endblock %}
+
+{% block content %}
+<h2 class="glow">Articles</h2>
+
+{% if user.role == 'journalist' %}
+  <p>
+    <a class="btn-vault" href="{% url 'article-create' %}">
+      Create New Article
+    </a>
+  </p>
+{% endif %}
+
+<div class="grid">
+  {% for article in articles %}
+    <div class="card-vault">
+      <h3>
+        <a href="{% url 'article-detail' article.pk %}">
+          {{ article.title }}
+        </a>
+      </h3>
+
+      <p class="muted">
+        By {{ article.author.username }} | {{ article.created_at }}
+      </p>
+
+      {% if article.approved %}
+        <span class="badge-vault">Approved</span>
+      {% else %}
+        <span class="badge-vault">Pending</span>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p class="muted">No articles available.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

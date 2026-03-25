@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card-vault">
+    <h2 class="glow">Vault Login</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Username:</label>
+        <input type="text" name="username">
+
+        <label>Password:</label>
+        <input type="password" name="password">
+
+        <br><br>
+        <button class="btn-vault" type="submit">Access Terminal</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Delete Newsletter | Vault Times{% endblock %}
+
+{% block content %}
+<div class="card-vault">
+  <h2 class="glow">Delete Newsletter</h2>
+  <p>Delete <strong>{{ newsletter.title }}</strong>?</p>
+  <p style="color: var(--danger);">This action cannot be undone.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn-vault" type="submit">Yes, delete</button>
+    <a class="btn-vault" href="{% url 'newsletter-detail' newsletter.pk %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

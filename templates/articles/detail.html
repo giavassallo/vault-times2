@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title }} | Vault Times{% endblock %}
+
+{% block content %}
+<div class="card-vault">
+  <h2 class="glow">{{ article.title }}</h2>
+  <p class="muted">By {{ article.author.username }} | {{ article.created_at }}</p>
+  <p>{{ article.content|linebreaks }}</p>
+
+  {% if article.approved %}
+    <span class="badge-vault">Approved</span>
+  {% else %}
+    <span class="badge-vault">Pending</span>
+  {% endif %}
+
+  {% if article.publisher %}
+    <p><strong>Publisher:</strong> {{ article.publisher.name }}</p>
+  {% endif %}
+
+  {% if user.role == 'editor' or user == article.author %}
+    <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+      <a class="btn-vault" href="{% url 'article-edit' article.pk %}">Edit</a>
+      <a class="btn-vault" href="{% url 'article-delete' article.pk %}">Delete</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

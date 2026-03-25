@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Subscriptions | Vault Times{% endblock %}
+
+{% block content %}
+<div style="max-width:800px; margin:0 auto;">
+  <div class="card-vault">
+    <h2 class="glow">Manage Subscriptions</h2>
+    <p class="muted">Choose the publishers and journalists you want to follow.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button class="btn-vault" type="submit">Save Subscriptions</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

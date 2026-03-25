@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width:1000px; margin:0 auto;">
+
+    <h1 class="glow">Publisher Dashboard</h1>
+
+    <!-- JOURNALISTS -->
+    <div class="card-vault">
+        <h2>Journalists</h2>
+
+        {% if journalists %}
+            <ul>
+                {% for user in journalists %}
+                    <li>{{ user.username }} ({{ user.email }})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No journalists assigned.</p>
+        {% endif %}
+    </div>
+
+    <br>
+
+    <!-- EDITORS -->
+    <div class="card-vault">
+        <h2>Editors</h2>
+
+        {% if editors %}
+            <ul>
+                {% for user in editors %}
+                    <li>{{ user.username }} ({{ user.email }})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No editors assigned.</p>
+        {% endif %}
+    </div>
+
+    <br>
+
+    <!-- ARTICLES -->
+    <div class="card-vault">
+        <h2>Articles</h2>
+
+        {% if articles %}
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        <strong>{{ article.title }}</strong>
+                        - {{ article.author.username }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No articles yet.</p>
+        {% endif %}
+    </div>
+
+    <br>
+
+    <!-- NEWSLETTERS -->
+    <div class="card-vault">
+        <h2>Newsletters</h2>
+
+        {% if newsletters %}
+            <ul>
+                {% for newsletter in newsletters %}
+                    <li>
+                        <strong>{{ newsletter.title }}</strong>
+                        - {{ newsletter.author.username }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No newsletters yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Writer Hub | Vault Times{% endblock %}
+
+{% block content %}
+<h2 class="glow">Writer Hub</h2>
+
+<div class="grid grid-2">
+  <div class="card-vault">
+    <h3>My Articles</h3>
+    <a class="btn-vault" href="{% url 'article-create' %}">Create Article</a>
+    {% for article in articles %}
+      <p>
+        <a href="{% url 'article-detail' article.pk %}">{{ article.title }}</a>
+        {% if article.approved %}
+          <span class="badge-vault">Approved</span>
+        {% else %}
+          <span class="badge-vault">Pending</span>
+        {% endif %}
+        {% if not article.approved %}<span class="muted"> (awaiting approval)</span>{% endif %}
+      </p>
+    {% empty %}
+      <p class="muted">No articles yet.</p>
+    {% endfor %}
+  </div>
+
+  <div class="card-vault">
+    <h3>My Newsletters</h3>
+    <a class="btn-vault" href="{% url 'newsletter-create' %}">Create Newsletter</a>
+    {% for newsletter in newsletters %}
+      <p><a href="{% url 'newsletter-detail' newsletter.pk %}">{{ newsletter.title }}</a></p>
+    {% empty %}
+      <p class="muted">No newsletters yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

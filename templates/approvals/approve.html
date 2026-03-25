@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="glow">Pending Articles</h2>
+
+<div class="grid">
+{% for article in articles %}
+    <div class="card-vault">
+        <h3>{{ article.title }}</h3>
+        <p class="muted">By {{ article.author.username }}</p>
+        <p>{{ article.content|truncatewords:25 }}</p>
+
+        <a class="btn-vault" href="/approve/{{ article.id }}/">Approve</a>
+    </div>
+{% empty %}
+    <p class="muted">No pending articles.</p>
+{% endfor %}
+</div>
+
+{% endblock %}

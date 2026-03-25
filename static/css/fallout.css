@@ -1,0 +1,94 @@
+:root {
+  --bg: #071107;
+  --panel: rgba(10, 24, 10, 0.95);
+  --text: #b8ffbf;
+  --muted: #7bbd82;
+  --accent: #7eff8a;
+  --accent-2: #d6ff8d;
+  --border: #3cff70;
+  --danger: #ff8a8a;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(126,255,138,0.08), transparent 35%),
+    linear-gradient(180deg, #081108 0%, #050905 100%);
+  color: var(--text);
+  font-family: "Courier New", Courier, monospace;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-2); }
+
+.navbar-vault,
+.card-vault,
+.panel-vault {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 18px rgba(60, 255, 112, 0.12);
+  border-radius: 18px;
+}
+
+.btn-vault {
+  background: #112211;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.65rem 1rem;
+}
+
+.btn-vault:hover {
+  background: #193019;
+  color: var(--accent-2);
+}
+
+.badge-vault {
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+
+.hero-vault {
+  padding: 4rem 1.25rem;
+  text-align: center;
+}
+
+.glow {
+  text-shadow: 0 0 10px rgba(126,255,138,0.35);
+}
+
+input, textarea, select {
+  width: 100%;
+  background: #091109;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.6rem;
+  margin-bottom: 10px;
+}
+
+label {
+  color: var(--accent-2);
+}
+
+hr {
+  border: 1px solid rgba(60,255,112,0.2);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card-vault:hover {
+  transform: scale(1.02);
+  transition: 0.2s ease;
+}
+
+.btn-vault:hover {
+  box-shadow: 0 0 8px var(--accent);
+}

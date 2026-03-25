@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card-vault">
+    <h2 class="glow">ACCESS DENIED</h2>
+    <p>You do not have permission to access this terminal.</p>
+    <a href="{% url 'home' %}">Return to Vault</a>
+</div>
+{% endblock %}

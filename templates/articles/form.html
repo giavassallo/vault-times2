@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} | Vault Times{% endblock %}
+
+{% block content %}
+<div style="max-width:700px; margin:0 auto;">
+  <h2 class="glow">{{ title }}</h2>
+  <form method="post" class="card-vault">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn-vault" type="submit">Save</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero-vault">
+    <h1 class="glow">☢️ VAULT TIMES TERMINAL ☢️</h1>
+
+    {% if user.is_authenticated %}
+        <p>Welcome back, <strong>{{ user.username }}</strong></p>
+        <p>Role: <span class="badge-vault">{{ user.role }}</span></p>
+
+        {% if user.role == 'reader' %}
+            <p>📖 Access your subscribed news streams.</p>
+        {% elif user.role == 'journalist' %}
+            <p>✍️ Create and manage your articles.</p>
+        {% elif user.role == 'editor' %}
+            <p>🛠 Review and approve submissions.</p>
+        {% endif %}
+    {% else %}
+        <p>Please login or register to access the vault.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

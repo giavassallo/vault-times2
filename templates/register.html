@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width:600px; margin:0 auto;">
+    <div class="card-vault">
+        <h2 class="glow">Vault Registration</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Username:</label>
+            {{ form.username }}
+
+            <label>Email:</label>
+            {{ form.email }}
+
+            <label>Password:</label>
+            {{ form.password1 }}
+
+            <label>Confirm Password:</label>
+            {{ form.password2 }}
+
+            <label>Select Role:</label>
+            {{ form.role }}
+
+            <label>Publisher:</label>
+            {{ form.publisher }}
+
+            {{ form.errors }}
+
+            <br>
+            <button class="btn-vault" type="submit">Enter Vault</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

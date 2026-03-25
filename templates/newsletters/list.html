@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Newsletters | Vault Times{% endblock %}
+
+{% block content %}
+<h2 class="glow">Newsletters</h2>
+
+{% if user.role == 'journalist' or user.role == 'editor' %}
+  <p><a class="btn-vault" href="{% url 'newsletter-create' %}">Create Newsletter</a></p>
+{% endif %}
+
+<div class="grid">
+  {% for newsletter in newsletters %}
+    <div class="card-vault">
+      <h3><a href="{% url 'newsletter-detail' newsletter.pk %}">{{ newsletter.title }}</a></h3>
+      <p class="muted">By {{ newsletter.author.username }} | {{ newsletter.created_at }}</p>
+    </div>
+  {% empty %}
+    <p class="muted">No newsletters yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
