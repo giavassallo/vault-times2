@@ -13,7 +13,7 @@ from .models import Article, Newsletter, Publisher, User
 
 def login_view(request):
     """
-    Allows registered users to login.
+    Allows registered users to login
     """
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -94,9 +94,9 @@ def dashboard(request):
 @login_required
 def reader_dashboard(request):
     """
-    Dashboard for reader only.
-    Readers can view subscription articles and newsletters.
-    Readers can subscribe to publishers and journalists.
+    Dashboard for reader only
+    Readers can view subscription articles and newsletters
+    Readers can subscribe to publishers and journalists
     """
     if request.user.role != 'reader':
         return HttpResponseForbidden()
@@ -116,8 +116,8 @@ def reader_dashboard(request):
 @login_required
 def journalist_dashboard(request):
     """
-    Displays journalist dashboard.
-    Journalists can create, edit, delete articles and newsletters.
+    Displays journalist dashboard
+    Journalists can create, edit, delete articles and newsletters
     """
     if request.user.role != 'journalist':
         return HttpResponseForbidden()
@@ -132,8 +132,8 @@ def journalist_dashboard(request):
 @login_required
 def editor_dashboard(request):
     """
-    Displays editor dashboard.
-    Editors can apprve articles and view arrpoval queue.
+    Displays editor dashboard
+    Editors can apprve articles and view arrpoval queue
     Editors can edit, create, delete articles and newsletters
     """
     if request.user.role != 'editor':
@@ -145,8 +145,8 @@ def editor_dashboard(request):
 @login_required
 def publisher_dashboard(request):
     """
-    Displays publisher dashboard.
-    Publishers can view articles and news letters under them.
+    Displays publisher dashboard
+    Publishers can view articles and news letters under them
     """
     if request.user.role != 'publisher':
         return HttpResponseForbidden()
@@ -188,7 +188,8 @@ def article_list(request):
 @login_required
 def article_detail(request, pk):
     """
-    Displays article detail per role."""
+    Displays article detail per role
+    """
     article = get_object_or_404(Article, pk=pk)
 
     allowed = False
@@ -211,7 +212,7 @@ def article_detail(request, pk):
 @login_required
 def create_article(request):
     """
-    Allows journalists and editors to create articles.
+    Allows journalists and editors to create articles
     """
     if request.user.role != 'journalist':
         return redirect('home')
@@ -234,7 +235,7 @@ def create_article(request):
 @require_http_methods(["GET", "POST"])
 def article_edit(request, pk):
     """
-    Allows editors and journalists to edit articles.
+    Allows editors and journalists to edit articles
     """
     article = get_object_or_404(Article, pk=pk)
 
@@ -257,7 +258,7 @@ def article_edit(request, pk):
 @require_http_methods(["GET", "POST"])
 def article_delete(request, pk):
     """
-    Allows editors and journalists to delete articles.
+    Allows editors and journalists to delete articles
     """
     article = get_object_or_404(Article, pk=pk)
 
@@ -275,7 +276,7 @@ def article_delete(request, pk):
 @login_required
 def approval_queue(request):
     """
-    Displays approval queue for editors.
+    Displays approval queue for editors
     """
     if request.user.role != 'editor':
         return HttpResponseForbidden()
@@ -286,7 +287,7 @@ def approval_queue(request):
 @login_required
 def approve_article(request, pk):
     """
-    Allows editor to approve articles.
+    Allows editor to approve articles
     """
     article = get_object_or_404(Article, pk=pk)
     
@@ -304,7 +305,7 @@ def approve_article(request, pk):
 @login_required
 def view_articles(request):
     """
-    Displays view of articles.
+    Displays view of articles
     """
     articles = Article.objects.filter(approved=True)
     return render(request, 'articles.html', {'articles': articles})
@@ -313,7 +314,7 @@ def view_articles(request):
 @login_required
 def newsletter_list(request):
     """
-    Displays list of newsletters.
+    Displays list of newsletters
     """
     newsletters = Newsletter.objects.all().order_by('-created_at')
     return render(request, 'newsletters/list.html', {'newsletters': newsletters})
@@ -322,7 +323,7 @@ def newsletter_list(request):
 @login_required
 def newsletter_detail(request, pk):
     """
-    Newsletter details display.
+    Newsletter details display
     """
     newsletter = get_object_or_404(Newsletter, pk=pk)
     return render(request, 'newsletters/detail.html', {'newsletter': newsletter})
@@ -332,7 +333,7 @@ def newsletter_detail(request, pk):
 @require_http_methods(["GET", "POST"])
 def newsletter_create(request):
     """
-    Allows journalists and editors to create newsletters.
+    Allows journalists and editors to create newsletters
     """
     if request.user.role not in ('journalist', 'editor'):
         return HttpResponseForbidden()
@@ -360,7 +361,7 @@ def newsletter_create(request):
 @require_http_methods(["GET", "POST"])
 def newsletter_edit(request, pk):
     """
-    Allows journalists and editors to edit newsletters.
+    Allows journalists and editors to edit newsletters
     """
     newsletter = get_object_or_404(Newsletter, pk=pk)
 
@@ -383,7 +384,7 @@ def newsletter_edit(request, pk):
 @require_http_methods(["GET", "POST"])
 def newsletter_delete(request, pk):
     """
-    Allows journalists and editors to delete newsletters.
+    Allows journalists and editors to delete newsletters
     """
     newsletter = get_object_or_404(Newsletter, pk=pk)
 
@@ -401,7 +402,7 @@ def newsletter_delete(request, pk):
 @login_required
 def manage_subscriptions(request):
     """
-    Allows reader to add, edit and view subscriptions.
+    Allows reader to add, edit and view subscriptions
     """
     if request.user.role != 'reader':
         return HttpResponseForbidden()
