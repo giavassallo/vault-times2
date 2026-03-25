@@ -24,7 +24,7 @@ ROLE_CHOICES = (
 
 class User(AbstractUser):
     """
-    Allows new users to choose thier role upon registration.
+    Allows new users to choose thier role upon registration
     """
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
@@ -52,7 +52,7 @@ class User(AbstractUser):
 
 class Article(models.Model):
     """
-    Displays article qulities and if approved or not.
+    Displays article qulities and if approved or not
     """
     title = models.CharField(max_length=255)
     content = models.TextField()
@@ -92,7 +92,7 @@ class Article(models.Model):
 
 class Newsletter(models.Model):
     """
-    Newsletter details displayed.
+    Newsletter details displayed
     """
     title = models.CharField(max_length=255)
     description = models.TextField()

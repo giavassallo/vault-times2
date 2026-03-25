@@ -4,6 +4,10 @@ from .models import User, Article, Newsletter, Publisher
 
 
 class RegisterForm(UserCreationForm):
+    """
+    User registraion form
+    Users choose roles upon registration
+    """
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -20,6 +24,9 @@ class RegisterForm(UserCreationForm):
 
 
 class ArticleCreateForm(forms.ModelForm):
+    """
+    Form for creation of articles
+    """
     class Meta:
         model = Article
         fields = ('title', 'content', 'publisher')
@@ -30,12 +37,18 @@ class ArticleCreateForm(forms.ModelForm):
 
 
 class ArticleEditForm(forms.ModelForm):
+    """
+    Form for editing articles
+    """
     class Meta:
         model = Article
         fields = ('title', 'content', 'publisher', 'approved')
 
 
 class NewsletterForm(forms.ModelForm):
+    """
+    Form for creating newsletters
+    """
     class Meta:
         model = Newsletter
         fields = ('title', 'description', 'articles', 'publisher')
@@ -46,6 +59,9 @@ class NewsletterForm(forms.ModelForm):
 
 
 class SubscriptionForm(forms.Form):
+    """
+    Form for subscriptions to publishers and journalists
+    """
     publishers = forms.ModelMultipleChoiceField(
         queryset=Publisher.objects.all(),
         required=False,
