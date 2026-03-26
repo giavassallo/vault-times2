@@ -127,14 +127,46 @@ docs/build/html/index.html
 
 ---
 
-## Docker Setup
+## Running with Docker (MariaDB)
 
-Build and run the container:
+This project uses Docker with MariaDB via docker-compose.
+
+### 1. Build and start containers
 
 ```bash
-docker build -t vault-times .
-docker run -p 8000:8000 vault-times
+docker-compose up --build
 ```
+
+---
+
+### 2. Run database migrations (in a new terminal)
+
+```bash
+docker exec -it django_app python manage.py migrate
+```
+
+---
+
+### 3. (Optional) Create admin user
+
+```bash
+docker exec -it django_app python manage.py createsuperuser
+```
+
+---
+
+### 4. Open the application
+
+Go to:
+http://localhost:8000
+
+---
+
+### Notes
+
+* The database container may take a few seconds to initialize
+* If migrations fail initially, wait and retry
+* Ensure Docker Desktop is running before starting
 
 ---
 
