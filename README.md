@@ -27,10 +27,6 @@ It allows publishers, editors, journalists, and readers to interact with article
 
 ```bash
 git clone https://github.com/giavassallo/vault-times.git
-```
----
-
-```bash
 cd vault-times
 ```
 
