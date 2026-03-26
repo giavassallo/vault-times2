@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:10.6
+    container_name: mariadb_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: vault_db
+      MYSQL_USER: vault_user
+      MYSQL_PASSWORD: vault_pass
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3306:3306"
+
+  web:
+    build: .
+    container_name: django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
