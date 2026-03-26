@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 from datetime import timedelta 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -76,16 +77,28 @@ WSGI_APPLICATION = 'news_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'newsapp_db',
-        'USER': 'root',
-        'PASSWORD': 'zg090521',
-        'HOST': 'localhost',
-        'PORT': '3306',
+if os.environ.get('USE_DOCKER') == '1':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'vault_db',
+            'USER': 'vault_user',
+            'PASSWORD': 'vault_pass',
+            'HOST': 'db',
+            'PORT': '3306',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'newsapp_db',
+            'USER': 'root',
+            'PASSWORD': 'zg090521',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
